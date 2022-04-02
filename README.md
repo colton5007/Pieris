@@ -1,6 +1,6 @@
 # Pieri's
 
-This is a tool for computing the cohomology ring structure of the Grassmannian G(k,n+1) using Schubert calculus. Namely, the tool can compute the cohomology groups using Schubert classes which serve as generating cocycles in the cohomology ring. Using Pieri's formula, we can compute the product between Schubert classes.
+This is a tool for computing the cohomology ring structure of the Grassmannian G(k,n+1) using Schubert calculus. Namely, the tool can compute the cohomology groups using Schubert classes which serve as generating cocycles in the cohomology ring. Using a combination of Pieri's formula and Giambelli's formula, we can compute the product between Schubert classes.
 
 ## Documentation
 
@@ -14,7 +14,7 @@ s1*s1
 s1 + s1
 ```
 
-```
+```python
 σ_(1,1)+σ_2 # output of product
 s1 + s1
 ```
@@ -33,7 +33,7 @@ While this can be read easily from the output above, if we want a prettified ver
 print_cohomology_groups(k=2,n=3)
 ```
 
-```
+```python
 H^0 (G(2,4)) = ℤ1
 H^1 (G(2,4)) = 0
 H^2 (G(2,4)) = ℤσ_1
@@ -87,7 +87,7 @@ print_multiplication_table(groups, latex=True)
 \hline
 \end{tabular}
 ```
-![Output of Multiplication Table in LaTeX](./latexoutputtest.png)
+![Output of Multiplication Table in LaTeX](./latextestoutput.png)
 
 
 The number of generators grow quickly for higher `k` and `n`, so we will not include many examples. But it should be easy to extrapolate if needed. For one, fairly useless example,
@@ -97,7 +97,7 @@ s2 = SchubertCycle(a=[2],k=4,n=9)
 s43 = SchubertCycle(a=[4,3],k=4,n=9)
 s2*s43
 ```
-```
+```python
 σ_(4,3,2)+σ_(4,4,1)+σ_(5,3,1)+σ_(5,4)+σ_(6,3)
 ```
 
@@ -109,7 +109,7 @@ s1 + s1
 s1 - s1
 3*(s1**2)
 ```
-```
+```python
 2σ_(1)
 0
 3σ_(1,1)+3σ_(2)
@@ -137,7 +137,7 @@ s1*s1*s1*s1
 
 In any case, we obtain the output
 
-```
+```python
 2σ_(2,2)
 ```
 
@@ -156,7 +156,7 @@ s1**6
 
 Which yields the output
 
-```
+```python
 5σ_(3,3)
 ```
 
@@ -175,7 +175,7 @@ s1*s1*s1*s3
 
 Which yields the output
 
-```
+```python
 σ_(3,3)
 ```
 
@@ -183,8 +183,11 @@ Hence, there is a single line that intersects 3 planes and passes through a fixe
 
 ## Future Work
 
+As it stands, many algorithms used in calculations are not very optimized, and using the Chern class approach, could greatly improve performance. That being said, the performance is acceptable for the time being. There is still some general clean-up to do, and unit tests will eventually be added to ensure the calculations are correct and without error. In the near term, the intersection pairing will be implemented.
 
+Since Pieri's formula can be interpretted through Young diagrams, there will hopefully be a renderer for this implemented to see the connection. In a similar vein, Schubert cycles are intimately connected with Schur polynomials, and this correspondence should be implemented in some form or another.
 
+Finally, the code is very poorly documented for the time being, so a push towards clarity in documentation is hopefully incoming.
 
 ## Citations
 
